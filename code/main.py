@@ -17,8 +17,8 @@ def draw_target(position,BALLCOLOR):
                        radius=30)
 
 def collide(mass1, mass2, velocity1, velocity2):
-    v1new = (((mass1 - mass2) * velocity1) + 2 * (mass2 * velocity2)) / (mass1+mass2)
-    v2new = (((mass2 - mass1) * velocity2) + 2 * (mass1 * velocity1)) / (mass1 + mass2)
+    v1new = (((mass1 - mass2) * velocity1) + (2 * (mass2 * velocity2))) / (mass1+mass2)
+    v2new = (((mass2 - mass1) * velocity2) + (2 * (mass1 * velocity1))) / (mass1 + mass2)
     return v1new, v2new
 
 def display_text(text,x,y):
@@ -32,8 +32,8 @@ def main():
 
     ball1position, ball2position = 100, 500
 
-    ball1velocity, ball2velocity = 3, -2
-    ball1mass, ball2mass = 1,2
+    ball1velocity, ball2velocity = 30, -20
+    ball1mass, ball2mass = 1 , 2
 
 
     while running:
@@ -50,7 +50,12 @@ def main():
         ball2position += ball2velocity
         #print(ball1velocity, ball2velocity)
         #print(ball1position, ball2position)
-        display_text(str(ball1velocity), 50, 100)
+        display_text(str(round(ball1velocity,2)), 50, 50)
+        display_text(str(round(ball1mass,2)), 50, 100)
+        display_text(str(round(ball2velocity,2)), 300, 50)
+        display_text(str(round(ball2mass,2)), 300, 100)
+        display_text(str(round(abs(ball2velocity*ball2mass)+abs(ball1velocity*ball1mass),2)),500,100)
+
         if abs(ball1position - ball2position) <= 60:
             v1, v2 = collide(ball1mass, ball2mass, ball1velocity, ball2velocity)
             ball1velocity = v1
@@ -65,7 +70,7 @@ def main():
         pygame.display.update()
 
 
-        clock.tick(60)
+        clock.tick(3)
     pygame.quit()
 
 if __name__ == "__main__":
