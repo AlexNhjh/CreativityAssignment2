@@ -7,14 +7,14 @@ import time
 
 pygame.init()
 
-WIDTH, HEIGHT = 850, 500
+WIDTH, HEIGHT = 1600, 900
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
 
 def draw_target(position,BALLCOLOR):
     pygame.draw.circle(screen,
                        color=BALLCOLOR,
-                       center=(position, 285),
-                       radius=30)
+                       center=(position, 450),
+                       radius=60)
 
 def collide(mass1, mass2, velocity1, velocity2):
     v1new = (((mass1 - mass2) * velocity1) + (2 * (mass2 * velocity2))) / (mass1+mass2)
@@ -49,41 +49,41 @@ def main():
         ball1position += ball1velocity
         ball2position += ball2velocity
 
-        display_text("Distance (m)", 0, 460, (255, 255, 255),25)
-        for i in range(9):
-            display_text(str(i), (i*100), 480, (255, 255, 255),23)
+        display_text("Distance (m)", 2, 830, (255, 255, 255),35)
+        for i in range(17):
+            display_text(str(i), (i*97)+2, 860, (255, 255, 255),45)
 
-        display_text("ball1 velocity", 100, 25, (255, 255, 255),30)
-        display_text(str(round(ball1velocity,2))+" m/s", 100, 50,(255,0,0),30)
-        display_text("ball1 mass", 100, 125, (255, 255, 255),30)
-        display_text(str(round(ball1mass,2))+" kg", 100, 150,(0,255,0),30)
+        display_text("ball1 velocity", 100, 25, (255, 255, 255),45)
+        display_text(str(round(ball1velocity,2))+" m/s", 100, 50,(255,0,0),45)
+        display_text("ball1 mass", 100, 125, (255, 255, 255),45)
+        display_text(str(round(ball1mass,2))+" kg", 100, 150,(0,255,0),45)
 
-        display_text("ball2 velocity", 350, 25, (255, 255, 255),30)
-        display_text(str(round(ball2velocity,2))+" m/s", 350, 50,(255,0,0),30)
-        display_text("ball2 mass", 350, 125, (255, 255, 255),30)
-        display_text(str(round(ball2mass,2))+" kg", 350, 150,(0,255,0),30)
+        display_text("ball2 velocity", 350, 25, (255, 255, 255),45)
+        display_text(str(round(ball2velocity,2))+" m/s", 350, 50,(255,0,0),45)
+        display_text("ball2 mass", 350, 125, (255, 255, 255),45)
+        display_text(str(round(ball2mass,2))+" kg", 350, 150,(0,255,0),45)
 
-        display_text("system momentum", 600, 25, (255, 255, 255),30)
-        display_text(str(round((ball2velocity*ball2mass)+(ball1velocity*ball1mass),2))+" kg*m/s",600,50,(0,0,255),30)
+        display_text("system momentum", 600, 25, (255, 255, 255),45)
+        display_text(str(round((ball2velocity*ball2mass)+(ball1velocity*ball1mass),2))+" kg*m/s",600,50,(0,0,255),45)
 
-        display_text("system kinetic energy", 600, 125, (255, 255, 255),30)
-        display_text(str(round(.5*ball1mass*ball1velocity**2 + .5*ball2mass*ball2velocity**2, 2))+" J", 600, 150,(0,0,255),30)
+        display_text("system kinetic energy", 600, 125, (255, 255, 255),45)
+        display_text(str(round(.5*ball1mass*ball1velocity**2 + .5*ball2mass*ball2velocity**2, 2))+" J", 600, 150,(0,0,255),45)
 
-        if abs(ball1position - ball2position) <= 60:
+        if abs(ball1position - ball2position) <= 120:
             v1, v2 = collide(ball1mass, ball2mass, ball1velocity, ball2velocity)
             ball1velocity = v1
             ball2velocity = v2
             #print(ball1velocity, ball2velocity)
 
-        if ball1position <= 30 or ball1position >= 770:
+        if ball1position <= 60 or ball1position >= 1540:
             ball1velocity = -ball1velocity
 
-        if ball2position <= 30 or ball2position >= 770:
+        if ball2position <= 60 or ball2position >= 1540:
             ball2velocity = -ball2velocity
         pygame.display.update()
 
 
-        clock.tick(60)
+        clock.tick(100)
     pygame.quit()
 
 if __name__ == "__main__":
