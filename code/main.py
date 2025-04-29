@@ -1,9 +1,5 @@
 import pygame
-import math
-import random
-import os
-import sys
-import time
+
 
 pygame.init()
 
@@ -186,25 +182,25 @@ def main():
                 display_text(str(i), (i * 97) + 2, 860, (255, 255, 255), 45)
             if ball1velocity != "":
                 display_text("ball1 velocity", 100, 25, (255, 255, 255), 45)
-                if input_boxes["velocity1"] == "":
+                if input_boxes["velocity1"] == "" or input_boxes["velocity1"] == "-":
                     display_text("0 m/s", 100, 50, (255, 0, 0), 45)
                 else:
                     display_text(str(round(float(input_boxes["velocity1"]), 2)) + " m/s", 100, 50, (255, 0, 0), 45)
             if ball1mass != "":
                 display_text("ball1 mass", 100, 125, (255, 255, 255), 45)
-                if input_boxes["mass1"] == "":
+                if input_boxes["mass1"] == "" or input_boxes["mass1"] == "-":
                     display_text("0 kg", 100, 50, (255, 0, 0), 45)
                 else:
                     display_text(str(round(float(input_boxes["mass1"]), 2)) + " kg", 100, 150, (0, 255, 0), 45)
             if ball2velocity != "":
                 display_text("ball2 velocity", 350, 25, (255, 255, 255), 45)
-                if input_boxes["velocity2"] == "":
+                if input_boxes["velocity2"] == "" or input_boxes["velocity2"] == "-":
                     display_text("0 m/s", 100, 50, (255, 0, 0), 45)
                 else:
                     display_text(str(round(float(input_boxes["velocity2"]), 2)) + " m/s", 350, 50, (255, 0, 0), 45)
             if ball2mass != "":
                 display_text("ball2 mass", 350, 125, (255, 255, 255), 45)
-                if input_boxes["mass2"] == '':
+                if input_boxes["mass2"] == '' or input_boxes["mass2"] == "-":
                     display_text("0 kg", 100, 50, (255, 0, 0), 45)
                 else:
                     display_text(str(round(float(input_boxes["mass2"]), 2)) + " kg", 350, 150, (0, 255, 0), 45)
