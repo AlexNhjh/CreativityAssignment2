@@ -80,7 +80,8 @@ def main():
                 elif 1400 <= x <= 1460 and 120 <= y <= 160:
                     input_active = "velocity2"
 
-                elif 750 >= x >= 500 >= y >= 500:  # Reset button area
+
+                elif 1250 <= x <= 1400 and 200 <= y <= 240:  # Reset button area
                     ball1position, ball2position, ball1velocity, ball2velocity, ball1mass, ball2mass, start, input_boxes = reset_game()
                 else:
                     input_active = None
@@ -105,6 +106,7 @@ def main():
             display_text(input_boxes["velocity2"], 1420, 125, (255, 255, 255), 45)
             pygame.draw.rect(screen, (0, 0, 200), (1400, 120, 60, 40), 2)
 
+            display_text("reset game",1250,200,(255,255,255),45)
             draw_target(ball1position,(200,100,100))
             draw_target(ball2position,(50,100,200))
 
@@ -150,6 +152,7 @@ def main():
 
 
         else:
+
             display_text("Elastic Collision Simulator",1030,370,(255,200,200),60)
             display_text("Made By Alex Keen", 1145, 430, (200,200,255), 45)
             display_text("Enter Quantities in the top right",1050,500,(200,255,200),45)
@@ -158,19 +161,19 @@ def main():
 
 
             display_text("Ball1 Mass (kg)",1200,25,(0,200,0),25)
-            display_text(input_boxes["mass1"], 1250, 55, (255, 255, 255), 45)
+            display_text(str(input_boxes["mass1"]), 1250, 55, (255, 255, 255), 45)
             pygame.draw.rect(screen,(0,0,200),(1230,50,60,40),2)
 
             display_text("Ball1 Velocity (m/s)", 1350, 25, (200,0,0), 25)
-            display_text(input_boxes["velocity1"], 1420, 55, (255, 255, 255), 45)
+            display_text(str(input_boxes["velocity1"]), 1420, 55, (255, 255, 255), 45)
             pygame.draw.rect(screen, (0,0,200), (1400, 50, 60, 40), 2)
 
             display_text("Ball2 Mass (kg)", 1200, 95, (0,200,0), 25)
-            display_text(input_boxes["mass2"], 1250, 125, (255, 255, 255), 45)
+            display_text(str(input_boxes["mass2"]), 1250, 125, (255, 255, 255), 45)
             pygame.draw.rect(screen, (0,0,200), (1230, 120, 60, 40), 2)
 
             display_text("Ball2 Velocity (m/s)", 1350, 95, (200,0,0), 25)
-            display_text(input_boxes["velocity2"], 1420, 125, (255, 255, 255), 45)
+            display_text(str(input_boxes["velocity2"]), 1420, 125, (255, 255, 255), 45)
             pygame.draw.rect(screen, (0,0,200), (1400, 120, 60, 40), 2)
 
             draw_target(ball1position, (200, 100, 100))
@@ -183,16 +186,28 @@ def main():
                 display_text(str(i), (i * 97) + 2, 860, (255, 255, 255), 45)
             if ball1velocity != "":
                 display_text("ball1 velocity", 100, 25, (255, 255, 255), 45)
-                display_text(str(round(float(input_boxes["velocity1"]), 2)) + " m/s", 100, 50, (255, 0, 0), 45)
+                if input_boxes["velocity1"] == "":
+                    display_text("0 m/s", 100, 50, (255, 0, 0), 45)
+                else:
+                    display_text(str(round(float(input_boxes["velocity1"]), 2)) + " m/s", 100, 50, (255, 0, 0), 45)
             if ball1mass != "":
                 display_text("ball1 mass", 100, 125, (255, 255, 255), 45)
-                display_text(str(round(float(input_boxes["mass1"]), 2)) + " kg", 100, 150, (0, 255, 0), 45)
+                if input_boxes["mass1"] == "":
+                    display_text("0 kg", 100, 50, (255, 0, 0), 45)
+                else:
+                    display_text(str(round(float(input_boxes["mass1"]), 2)) + " kg", 100, 150, (0, 255, 0), 45)
             if ball2velocity != "":
                 display_text("ball2 velocity", 350, 25, (255, 255, 255), 45)
-                display_text(str(round(float(input_boxes["velocity2"]), 2)) + " m/s", 350, 50, (255, 0, 0), 45)
+                if input_boxes["velocity2"] == "":
+                    display_text("0 m/s", 100, 50, (255, 0, 0), 45)
+                else:
+                    display_text(str(round(float(input_boxes["velocity2"]), 2)) + " m/s", 350, 50, (255, 0, 0), 45)
             if ball2mass != "":
                 display_text("ball2 mass", 350, 125, (255, 255, 255), 45)
-                display_text(str(round(float(input_boxes["mass2"]), 2)) + " kg", 350, 150, (0, 255, 0), 45)
+                if input_boxes["mass2"] == '':
+                    display_text("0 kg", 100, 50, (255, 0, 0), 45)
+                else:
+                    display_text(str(round(float(input_boxes["mass2"]), 2)) + " kg", 350, 150, (0, 255, 0), 45)
 
             if ball1velocity != "" and ball2velocity != "" and ball1mass != "" and ball2mass != "":
                 display_text("system momentum", 600, 25, (255, 255, 255), 45)
@@ -218,7 +233,12 @@ def reset_game():
     ball1mass = 0
     ball2mass = 0
     start = False
-    input_boxes = {"mass1": "", "mass2": "", "velocity1": "", "velocity2": ""}
+    input_boxes = {
+        "mass1": "",
+        "mass2": "",
+        "velocity1": "",
+        "velocity2": ""
+    }
     return ball1position, ball2position, ball1velocity, ball2velocity, ball1mass, ball2mass, start, input_boxes
 
 
